@@ -23,3 +23,23 @@
 - HEAD — это «указатель» на текущий коммит.  
 - Обычно указывает на последний коммит текущей ветки.  
 - Если переключиться (`git checkout`), HEAD укажет на выбранный коммит или ветку.
+
+
+## Статусы файлов
+
+- **untracked** — новый файл, Git его видит, но не отслеживает.  
+- **tracked** — файл уже под контролем Git.  
+- **staged** — файл добавлен в staging area (`git add`).  
+- **modified** — файл изменён после последнего коммита.  
+
+Жизненный цикл файла:  
+`untracked → staged → tracked/committed → modified → staged → ...`
+
+```mermaid
+graph LR;
+  untracked -- "git add" --> staged;
+  staged -- "git commit" --> tracked;
+  tracked -- "изменения" --> modified;
+  modified -- "git add" --> staged;
+
+%% цикл повторяется много раз
